@@ -9,13 +9,13 @@ import Headphone2 from './assets/headphone.jpg';
 import shoes2 from './assets/shoes2.jpg';
 
 export const PRODUCTS = [
-  { id: 1, name: "Head Phones", price: 120, category: "Electronics", image: Headphone },
-  { id: 2, name: "Running Shoes", price: 80, category: "Fashion", image: shoes },
-  { id: 3, name: "Coffee Maker", price: 150, category: "Office", image: coffee },
-  { id: 4, name: "Backpack", price: 60, category: "Fashion", image: backpack },
-  { id: 5, name: "Desk Lamp", price: 40, category: "Office", image: lamp },
-  { id: 6, name: "Bluetooth Speaker", price: 90, category: "Electronics", image: bluetooth },
-  { id: 7, name: "Head Phones", price: 120, category: "Electronics", image: Headphone2 },
-  { id: 8, name: "Running Shoes", price: 80, category: "Fashion", image: shoes2 },
-  { id: 9, name: "Chair", price: 150, category: "Office", image: chair },
+  { id: 1, name: "Head Phones", price: 120, category: "Electronics", image: Headphone, stock: 100 },
+  { id: 2, name: "Running Shoes", price: 80, category: "Fashion", image: shoes, stock: 150 },
+  { id: 3, name: "Coffee Maker", price: 150, category: "Office", image: coffee, stock: 90 },
+  { id: 4, name: "Backpack", price: 60, category: "Fashion", image: backpack, stock: 10 },
+  { id: 5, name: "Desk Lamp", price: 40, category: "Office", image: lamp, stock: 40 },
+  { id: 6, name: "Bluetooth Speaker", price: 90, category: "Electronics", image: bluetooth, stock: 20 },
+  { id: 7, name: "Head Phones", price: 120, category: "Electronics", image: Headphone2, stock: 110 },
+  { id: 8, name: "Running Shoes", price: 80, category: "Fashion", image: shoes2, stock: 60 },
+  { id: 9, name: "Chair", price: 150, category: "Office", image: chair, stock: 50 },
 ];

@@ -1,4 +1,3 @@
-/* App.jsx */
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./Navbar.jsx";
@@ -18,61 +17,89 @@ export default function App() {
     }
   });
 
+  const [message, setMessage] = useState("");
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  // addToCart accepts product object and optional product.quantity
-  const addToCart = (product) => {
-  const qtyToAdd = product.quantity && product.quantity > 0 ? product.quantity : 1;
-
-  setCart((prev) => {
-    const existingIndex = prev.findIndex((item) => item.id === product.id);
-
-    if (existingIndex !== -1) {
-      // Update existing product quantity
-      const updatedCart = [...prev];
-      const existing = updatedCart[existingIndex];
-      updatedCart[existingIndex] = {
-        ...existing,
-        quantity: (existing.quantity || 1) + qtyToAdd,
-      };
-      return updatedCart;
-    } else {
-      // Add new product with default quantity
-      const newItem = {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        image: product.image,
-        quantity: qtyToAdd,
-        date: new Date().toLocaleString(),
-      };
-      return [...prev, newItem];
+  // ✅ Automatically clear message after 2 seconds
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => setMessage(""), 2000);
+      return () => clearTimeout(timer);
     }
-  });
-};
+  }, [message]);
 
-  // increase quantity by 1
-  const increaseQuantity = (id) => {
-    setCart((prev) => prev.map((it) => (it.id === id ? { ...it, quantity: (it.quantity || 1) + 1 } : it)));
+  // ✅ Add to cart
+  const addToCart = (product) => {
+    const qtyToAdd = product.quantity && product.quantity > 0 ? product.quantity : 1;
+
+    if (product.stock === 0 || qtyToAdd > product.stock) {
+      setMessage(`Stock unavailable for ${product.name}`);
+      return;
+    }
+
+    setCart((prev) => {
+      const existingIndex = prev.findIndex((item) => item.id === product.id);
+
+      if (existingIndex !== -1) {
+        const updatedCart = [...prev];
+        const existing = updatedCart[existingIndex];
+        const newQty = (existing.quantity || 1) + qtyToAdd;
+
+        if (newQty > product.stock) {
+          setMessage(`Only ${product.stock} units available in stock!`);
+          return prev;
+        }
+
+        updatedCart[existingIndex] = { ...existing, quantity: newQty };
+        setMessage(`Added more ${product.name} to cart`);
+        return updatedCart;
+      } else {
+        const newItem = {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          image: product.image,
+          stock: product.stock,
+          quantity: qtyToAdd,
+          date: new Date().toLocaleString(),
+        };
+        setMessage(`${product.name} added to cart successfully`);
+        return [...prev, newItem];
+      }
+    });
   };
 
-  // decrease quantity by 1, but keep >= 1; if you want remove when 0, filter it out
-  const decreaseQuantity = (id) => {
+  // ✅ Quantity controls
+  const increaseQuantity = (id) => {
     setCart((prev) =>
-      prev
-        .map((it) =>
-          it.id === id ? { ...it, quantity: Math.max(1, (it.quantity || 1) - 1) } : it
-        )
+      prev.map((item) => {
+        if (item.id === id) {
+          const nextQty = item.quantity + 1;
+          if (nextQty > item.stock) {
+            setMessage(`Stock unavailable for ${item.name}`);
+            return item;
+          }
+          return { ...item, quantity: nextQty };
+        }
+        return item;
+      })
     );
   };
 
-  // remove item completely
-  const removeFromCart = (id) => {
-    setCart((prev) => prev.filter((it) => it.id !== id));
+  const decreaseQuantity = (id) => {
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Math.max(1, item.quantity - 1) }
+          : item
+      )
+    );
   };
 
+  const removeFromCart = (id) => setCart((prev) => prev.filter((it) => it.id !== id));
   const clearCart = () => {
     setCart([]);
     localStorage.removeItem("cart");
@@ -84,25 +111,39 @@ export default function App() {
     <div className="app-container">
       <Navbar cart={cart} removeFromCart={removeFromCart} />
 
+      {/* ✅ Auto-hide message box */}
+      {message && (
+        <div
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            background: "white",
+            border: "2px solid #2563eb",
+            padding: "20px",
+            borderRadius: "10px",
+            boxShadow: "0 5px 15px rgba(37, 99, 235, 0.3)",
+            zIndex: 9999,
+            color: "#424443",
+            textAlign: "center",
+            minWidth: "250px",
+          }}
+        >
+          <p>{message}</p>
+        </div>
+      )}
+
       <Routes>
         <Route path="/" element={<Navigate to="/products" replace />} />
-
         <Route
           path="/products"
-          element={
-            <ProductPage
-              addToCart={addToCart}
-              removeFromCart={removeFromCart}
-              cart={cart}
-            />
-          }
+          element={<ProductPage addToCart={addToCart} cart={cart} />}
         />
-
         <Route
           path="/product/:id"
           element={<ProductInfoPage products={safeProducts} addToCart={addToCart} />}
         />
-
         <Route
           path="/cart"
           element={
@@ -114,19 +155,9 @@ export default function App() {
             />
           }
         />
-
-        <Route path="/checkout" element={<CheckoutPage cart={cart} clearCart={clearCart} />} />
-
         <Route
-          path="*"
-          element={
-            <div style={{ textAlign: "center", marginTop: 100 }}>
-              <h2>404 — Page Not Found</h2>
-              <p>
-                Try going back to <a href="/products">Products</a>
-              </p>
-            </div>
-          }
+          path="/checkout"
+          element={<CheckoutPage cart={cart} clearCart={clearCart} />}
         />
       </Routes>
     </div>

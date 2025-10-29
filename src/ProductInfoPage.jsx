@@ -6,14 +6,11 @@ export default function ProductInfoPage({ products = [], addToCart }) {
   const { id } = useParams();
   const product = products.find((p) => String(p.id) === String(id));
   const [quantity, setQuantity] = useState(1);
-  const [showMessage, setShowMessage] = useState(false);
 
   if (!product) return <h2>Product not found</h2>;
 
   const handleAddToCart = () => {
-    addToCart({ ...product, quantity });
-    setShowMessage(true);
-    setTimeout(() => setShowMessage(false), 2000); // Hide after 2 sec
+    addToCart({ ...product, quantity }); // App handles messages
   };
 
   return (
@@ -26,6 +23,9 @@ export default function ProductInfoPage({ products = [], addToCart }) {
         <h2 className="Product-Name">{product.name}</h2>
         <p className="price">${product.price}</p>
         <p className="desc">{product.description || "Product description..."}</p>
+        <p className="stock">
+          Stock: {product.stock > 0 ? product.stock : "Out of stock"}
+        </p>
 
         <div className="quantity-section">
           <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>-</button>
@@ -41,15 +41,6 @@ export default function ProductInfoPage({ products = [], addToCart }) {
           Total: ${(product.price * quantity).toFixed(2)}
         </p>
       </div>
-
-      {/* ✅ Center Popup Message */}
-      {showMessage && (
-        <div className="popup-message-center">
-          <div className="popup-box">
-            <h3>Added to Cart Successfully!</h3>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
