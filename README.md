@@ -1,18 +1,92 @@
-# React + Vite
+## 🖥️ Screenshots
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### 🏢  Product Page
+![Product Page](https://github.com/Zakria-Tahir/Employe-Attandance-System/blob/main/src/assets/admin.PNG?raw=true)
 
-Currently, two official plugins are available:
+### ⏱️ Cart Page
+![Cart Page](https://github.com/Zakria-Tahir/Employe-Attandance-System/blob/main/src/assets/employe.PNG?raw=true)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🔐 Checkout page
+![Checkout page](https://github.com/Zakria-Tahir/Employe-Attandance-System/blob/main/src/assets/login.PNG?raw=true)
 
-## React Compiler
+### 🏢  Productinfo Page
+![Productinfo Page](https://github.com/Zakria-Tahir/Employe-Attandance-System/blob/main/src/assets/admin.PNG?raw=true)
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+🛍️ E-Commerce Web Application
 
-Note: This will impact Vite dev & build performances.
+A modern, full-featured E-Commerce web app built with React.js, offering product browsing, filtering, cart management, checkout functionality, and dynamic stock updates. This project demonstrates practical front-end architecture, state management, and data persistence using localStorage.
 
-## Expanding the ESLint configuration
+🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🏷️ Product Listing – Display all available products with images, prices, and descriptions.
+
+🔍 Category Filtering – Filter products by category for easier navigation.
+
+🧺 Cart Management – Add, remove, and update quantities of items in the cart.
+
+💾 Persistent Cart Storage – Automatically saves the cart using localStorage.
+
+💰 Dynamic Total Calculation – Updates total amount and item count in real time.
+
+⚠️ Stock Validation – Prevents adding items beyond available stock.
+
+✅ Checkout System – Updates stock after successful purchase.
+
+🔔 Dialog Alerts – Displays success or out-of-stock messages in pop-up dialogs.
+
+📱 Responsive Design – Works across desktop, tablet, and mobile devices.
+
+🧠 Tech Stack
+Category	Technology Used
+Frontend Framework	React.js (Vite)
+Routing	React Router DOM
+State Management	React Hooks (useState, useEffect)
+Styling	CSS3
+Data Storage	localStorage
+Build Tool	Vite
+Version Control	Git + GitHub
+
+## 🛠️ Technologies why Used
+
+- **React.js (Vite)** – Frontend framework    
+- **React Router** – Page routing  
+- **CSS3** – Custom responsive design  
+- **LocalStorage** – Persistent data saving 
+
+1. **Clone this repository**
+   ```bash
+   git clone https://github.com/Zakria-Tahir/Employe-Attandance-System.git
+
+
+## 📂 Project Folder Structure
+
+E-Commerce-Site/</br>
+│</br>
+├── src/</br>
+│   ├── Components/</br>
+│   │   ├── CartDropdown.css</br>
+│   │   ├── CartPage.css</br>
+│   │   ├── CheckoutPage.css</br>
+│   │   ├── Navbar.css</br>
+│   │   ├── ProductCard.css</br>
+│   │   ├── ProductInfoPage.css</br>
+│   │   ├── ProductPage.css</br>
+│   │ </br>  
+│   ├── App.jsx</br>
+│   ├── CartDropdown.jsx</br>
+│   ├── CartPage.jsx</br>
+│   ├── CheckoutPage.jsx</br>
+│   ├── Navbar.jsx</br>
+│   ├── ProductCard.jsx</br>
+│   ├── ProductInfoPage.jsx</br>
+│   ├── ProductPage.jsx</br>
+│   ├── products.jsx</br>
+│   ├── index.css</br>
+│   ├── main.jsx</br>
+│</br>
+├── eslint.config.js</br>
+├── index.html</br>
+├── package-lock.json</br>
+├── package.json</br>
+├── README.md</br>
+└── vite.config.js
