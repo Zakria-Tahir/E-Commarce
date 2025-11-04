@@ -1,16 +1,16 @@
 ## 🖥️ Screenshots
 
 ### 🏢  Product Page
-![Product Page](https://github.com/Zakria-Tahir/Employe-Attandance-System/blob/main/src/assets/admin.PNG?raw=true)
+![Product Page](https://github.com/Zakria-Tahir/E-Commarce/blob/main/src/assets/localhost_5173_products%20(1).png?raw=true)
 
 ### ⏱️ Cart Page
-![Cart Page](https://github.com/Zakria-Tahir/Employe-Attandance-System/blob/main/src/assets/employe.PNG?raw=true)
+![Cart Page](https://github.com/Zakria-Tahir/E-Commarce/blob/main/src/assets/localhost_5173_cart.png?raw=true)
 
 ### 🔐 Checkout page
-![Checkout page](https://github.com/Zakria-Tahir/Employe-Attandance-System/blob/main/src/assets/login.PNG?raw=true)
+![Checkout page](https://github.com/Zakria-Tahir/E-Commarce/blob/main/src/assets/localhost_5173_checkout.png?raw=true)
 
 ### 🏢  Productinfo Page
-![Productinfo Page](https://github.com/Zakria-Tahir/Employe-Attandance-System/blob/main/src/assets/admin.PNG?raw=true)
+![Productinfo Page](https://github.com/Zakria-Tahir/E-Commarce/blob/main/src/assets/localhost_5173_product_1.png?raw=true)
 
 🛍️ E-Commerce Web Application
 
@@ -90,3 +90,5 @@ E-Commerce-Site/</br>
 ├── package.json</br>
 ├── README.md</br>
 └── vite.config.js
+
+## Developed by: Zakria Tahir
