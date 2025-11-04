@@ -14,46 +14,45 @@ export default function Navbar({ cart, removeFromCart }) {
         <h2 className="logo">🛍️ MyShop</h2>
       </div>
 
-      {/* Toggle button (mobile) */}
       <div className="flex-set">
-      <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
-        {menuOpen ? "✖" : "☰"}
-      </div>
+        {/* Toggle button (mobile) */}
+        <div
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? "✖" : "☰"}
+        </div>
 
-      {/* Center Navigation Links */}
-      <div className={`nav-center ${menuOpen ? "open" : ""}`}>
-        <ul className="nav-links">
-          <li>
-            Home
-          </li>
-          <li>
-            About
-          </li>
-          <li>
-            <NavLink
-              to="/products"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              Products
-            </NavLink>
-          </li>
-          <li>
-            Contact
-          </li>
-        </ul>
-      </div>
+        {/* Center Navigation Links */}
+        <div className={`nav-center ${menuOpen ? "open" : ""}`}>
+          <ul className="nav-links">
+            <li>Home</li>
+            <li>About</li>
+            <li>
+              <NavLink
+                to="/products"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Products
+              </NavLink>
+            </li>
+            <li>Contact</li>
+          </ul>
+        </div>
 
-      {/* Cart */}
-      <div
-        className="nav-cart"
-        onMouseEnter={() => setShowCart(true)}
-        onMouseLeave={() => setShowCart(false)}
-      >
-        <NavLink to="/cart" className="cart-link">
-          🛒 Cart <span className="len">{cart.length}</span>
-        </NavLink>
-        {showCart && <CartDropdown cart={cart} removeFromCart={removeFromCart} />}
-      </div>
+        {/* Cart */}
+        <div
+          className="nav-cart"
+          onMouseEnter={() => setShowCart(true)}
+          onMouseLeave={() => setShowCart(false)}
+        >
+          <NavLink to="/cart" className="cart-link">
+            🛒 Cart <span className="len">{cart.length}</span>
+          </NavLink>
+          {showCart && (
+            <CartDropdown cart={cart} removeFromCart={removeFromCart} />
+          )}
+        </div>
       </div>
     </nav>
   );

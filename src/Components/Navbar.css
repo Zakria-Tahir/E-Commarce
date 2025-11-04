@@ -12,7 +12,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  align-content: center;
 }
 
 .flex-set {
@@ -67,22 +66,6 @@
   background: rgba(58, 58, 59, 0.08);
 }
 
-.nav-links li::after {
-  content: "";
-  position: absolute;
-  left: 0px;
-  bottom: -10px;
-  width: 0%;
-  height: 2px;
-  background-color: white;
-  transition: width 0.3s ease;
-  border-radius: 4px;
-}
-
-.nav-links li:hover::after {
-  width: 100%;
-}
-
 .nav-links li a {
   text-decoration: none;
   color: white;
@@ -92,7 +75,7 @@
 }
 
 .nav-links li a.active {
-  color: #424443 ;
+  color: #424443;
   background: #faf8f8;
   font-weight: 600;
 }
@@ -100,20 +83,6 @@
   color: #faf8f8;
   background: #424443;
 }
-
-.nav-links li a.active::after {
-  content: "";
-  position: absolute;
-  left: 0px;
-  bottom: -10px;
-  width: 0%;
-  height: 2px;
-  background-color: white;
-  transition: width 0.3s ease;
-  border-radius: 4px;
-}
-
-
 
 /* Cart */
 .nav-cart {
@@ -123,7 +92,6 @@
   text-align: center;
   margin-right: 50px;
   position: relative;
-
 }
 
 .cart-link {
@@ -141,33 +109,14 @@
 }
 
 .nav-cart:hover {
-  
-  background-color:#424443 ;
+  background-color: #424443;
   transform: translateY(-2px);
   border-radius: 10px;
-  
-   padding: 10px 0px;
-}
-
-
-
-.nav-cart::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -7px;
-  width: 0%;
-  height: 2px;
-  background-color: white;
-  transition: width 0.3s ease;
-}
-
-.nav-cart:hover::after {
-  width: 100%;
+  padding: 10px 0px;
 }
 
 .cart-dropdown {
-  background-color: #F9FAFB;
+  background-color: #f9fafb;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -181,22 +130,20 @@
   z-index: 999;
 }
 
-.cart-dropdown p {
-  color: #424443;
-}
-
 /* Toggle Button (Hamburger) */
 .menu-toggle {
   display: none;
   font-size: 26px;
   cursor: pointer;
-  color: #F9FAFB;
+  color: #f9fafb;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+.menu-toggle:active {
+  transform: scale(0.9);
+}
 
-
-
-/* =================== Responsive 900px =================== */
+/* =================== Responsive =================== */
 @media (max-width: 900px) {
   .navbar {
     display: flex;
@@ -216,6 +163,7 @@
     margin-left: 20px;
   }
 
+  /* ✅ Animated fade-in menu */
   .nav-center {
     display: none;
     position: absolute;
@@ -230,10 +178,17 @@
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(66, 68, 67, 0.1);
     z-index: 999;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.35s ease;
   }
 
   .nav-center.open {
     display: flex;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   .nav-links {
@@ -241,39 +196,33 @@
     gap: 16px;
   }
 
-  /* ✅ Cart below toggle on right side */
+  /* Cart below toggle */
   .nav-cart {
     position: absolute;
-    top: 95px; /* directly below toggle */
+    top: 95px;
     right: 15px;
     margin: 0;
     width: auto;
     padding: 8px;
     z-index: 10;
-    background-color:white;
-    border: 1px solid #2563eb ;
-     border-radius: 15px;
-    
+    background-color: white;
+    border: 1px solid #2563eb;
+    border-radius: 15px;
   }
 
-  .nav-cart:hover{
+  .nav-cart:hover {
     background-color: white;
     color: #424443;
   }
 
-
-
-  
-
-  .cart-link{
+  .cart-link {
     color: #424443;
   }
 
-  .cart-link .len{
-  color:white;
-  background-color: #424443;
- 
-}
+  .cart-link .len {
+    color: white;
+    background-color: #424443;
+  }
 
   .cart-dropdown {
     position: relative;
@@ -282,7 +231,7 @@
     width: 260px;
     color: white;
     background: white;
-   border: none;
+    border: none;
     border-radius: 10px;
     padding: 10px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
