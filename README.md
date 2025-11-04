@@ -71,7 +71,7 @@ E-Commerce-Site/</br>
 │   │   ├── ProductCard.css</br>
 │   │   ├── ProductInfoPage.css</br>
 │   │   ├── ProductPage.css</br>
-│   │ </br>  
+│</br>  
 │   ├── App.jsx</br>
 │   ├── CartDropdown.jsx</br>
 │   ├── CartPage.jsx</br>
